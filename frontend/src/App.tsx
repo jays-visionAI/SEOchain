@@ -1,10 +1,11 @@
 import { useState, useMemo } from 'react';
 import { ThemeProvider, createTheme, CssBaseline, GlobalStyles } from '@mui/material';
-import { Container, Box, AppBar, Toolbar, Typography, Button, useMediaQuery, IconButton, Drawer, List, ListItem, ListItemText, ListItemIcon, Grid, Card, Avatar } from '@mui/material';
+import { Container, Box, AppBar, Toolbar, Typography, Button, useMediaQuery, IconButton, Drawer, List, ListItem, ListItemText, ListItemIcon, Grid, Card, Avatar, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import HubIcon from '@mui/icons-material/Hub';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LogoutIcon from '@mui/icons-material/Logout';
 import KeyIcon from '@mui/icons-material/Key';
 import { Wallet } from 'ethers';
@@ -358,6 +359,156 @@ function App() {
                     </Grid>
                   ))}
                 </Grid>
+              </Box>
+
+              {/* Token Section */}
+              <Box sx={{ width: '100%' }}>
+                <Typography variant="h3" align="center" gutterBottom sx={{ fontWeight: 800, mb: 8 }}>
+                  Token Utility (VCN)
+                </Typography>
+                <Grid container spacing={4} justifyContent="center">
+                  {[
+                    { title: 'Gas Fees', desc: 'Pay for transaction fees across all connected chains.' },
+                    { title: 'Governance', desc: 'Vote on protocol upgrades and parameter changes.' },
+                    { title: 'Staking', desc: 'Secure the network and earn rewards by staking VCN.' },
+                    { title: 'Settlement', desc: 'Used for cross-chain value settlement and liquidity.' },
+                  ].map((item, index) => (
+                    <Grid item xs={12} sm={6} md={3} key={index}>
+                      <Box sx={{
+                        p: 4,
+                        borderRadius: 4,
+                        background: 'rgba(139, 92, 246, 0.1)',
+                        border: '1px solid rgba(139, 92, 246, 0.2)',
+                        textAlign: 'center',
+                        height: '100%'
+                      }}>
+                        <Typography variant="h6" fontWeight="bold" gutterBottom color="primary.main">
+                          {item.title}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {item.desc}
+                        </Typography>
+                      </Box>
+                    </Grid>
+                  ))}
+                </Grid>
+              </Box>
+
+              {/* Roadmap Section */}
+              <Box sx={{ width: '100%' }}>
+                <Typography variant="h3" align="center" gutterBottom sx={{ fontWeight: 800, mb: 8 }}>
+                  Roadmap
+                </Typography>
+                <Grid container spacing={4}>
+                  {[
+                    {
+                      period: 'Q3 2025',
+                      items: ['Token Distribution System Release', 'AI Agentic Node Release', 'EVM Cross-Chain Integration']
+                    },
+                    {
+                      period: 'Q4 2025',
+                      items: ['Exchange Listing', 'No Code SDK Release', 'BTC Cross-Chain Integration', 'Vision Scan BETA Launch']
+                    },
+                    {
+                      period: 'Q1 2026',
+                      items: ['Vision Chain Academy Open', 'Testnet Release', 'Agentic DAO BETA Release']
+                    },
+                    {
+                      period: 'Q2 2026',
+                      items: ['Exchange Listing', 'Validator Node Release', 'Mainnet Release', 'Vision Chain Hackathon']
+                    },
+                    {
+                      period: 'Q3 2026',
+                      items: ['Agentic DAO Release', 'dApp Accelerator Program Release']
+                    }
+                  ].map((phase, index) => (
+                    <Grid item xs={12} md={4} key={index}>
+                      <Card sx={{
+                        p: 4,
+                        height: '100%',
+                        background: 'rgba(30, 41, 59, 0.4)',
+                        border: '1px solid rgba(255, 255, 255, 0.05)',
+                        position: 'relative',
+                        overflow: 'visible'
+                      }}>
+                        <Box sx={{
+                          position: 'absolute',
+                          top: -15,
+                          left: 20,
+                          background: '#8B5CF6',
+                          px: 2,
+                          py: 0.5,
+                          borderRadius: 2,
+                          fontWeight: 'bold',
+                          fontSize: '0.9rem'
+                        }}>
+                          {phase.period}
+                        </Box>
+                        <List dense>
+                          {phase.items.map((item, i) => (
+                            <ListItem key={i} disablePadding sx={{ mb: 1 }}>
+                              <ListItemIcon sx={{ minWidth: 30 }}>
+                                <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: 'secondary.main' }} />
+                              </ListItemIcon>
+                              <ListItemText primary={item} primaryTypographyProps={{ variant: 'body2', color: 'text.secondary' }} />
+                            </ListItem>
+                          ))}
+                        </List>
+                      </Card>
+                    </Grid>
+                  ))}
+                </Grid>
+              </Box>
+
+              {/* FAQ Section */}
+              <Box sx={{ width: '100%', maxWidth: '1000px' }}>
+                <Typography variant="h3" align="center" gutterBottom sx={{ fontWeight: 800, mb: 8 }}>
+                  We’ve got the answers
+                </Typography>
+                {[
+                  {
+                    q: 'What does “Network-Agnostic” mean?',
+                    a: 'Vision Chain works across EVM and non-EVM chains without wrapped tokens or custodial bridges, automatically choosing the best route.'
+                  },
+                  {
+                    q: 'Who is Vision Chain for?',
+                    a: 'It is designed for developers building cross-chain dApps, enterprises needing secure blockchain integration, and users seeking seamless asset transfers.'
+                  },
+                  {
+                    q: 'How is cross-chain execution kept safe?',
+                    a: 'We utilize Zero-Knowledge (zk) proofs and AI-driven routing to ensure transaction validity and security without relying on centralized validators.'
+                  },
+                  {
+                    q: 'What is Intent-Centric Execution?',
+                    a: 'Users simply specify their desired outcome (e.g., "Swap ETH for BTC"), and Vision Chain’s AI agents handle the complex routing, gas fees, and execution.'
+                  },
+                  {
+                    q: 'Is it enterprise-ready?',
+                    a: 'Yes, Vision Chain offers built-in integrations for ERP and accounting systems, making it suitable for large-scale business operations.'
+                  },
+                  {
+                    q: 'What is VCN used for?',
+                    a: 'VCN is the native utility token used for gas fees, governance voting, staking for network security, and cross-chain settlement.'
+                  }
+                ].map((faq, index) => (
+                  <Accordion key={index} sx={{
+                    mb: 2,
+                    background: 'rgba(30, 41, 59, 0.4)',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(255, 255, 255, 0.05)',
+                    '&:before': { display: 'none' },
+                    borderRadius: '12px !important'
+                  }}>
+                    <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: 'text.secondary' }} />}>
+                      <Typography variant="h6" sx={{ fontWeight: 600, fontSize: '1.1rem' }}>{faq.q}</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Typography color="text.secondary" sx={{ lineHeight: 1.6 }}>
+                        {faq.a}
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                ))}
               </Box>
 
               {/* Team Section */}
