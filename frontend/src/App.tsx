@@ -235,11 +235,11 @@ function App() {
           {drawer}
         </Drawer>
 
-        <Container maxWidth="lg" sx={{ mt: 4, mb: 8, flex: 1 }}>
+        <Container maxWidth="xl" sx={{ mt: 0, mb: 8, flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           {authToken && wallet ? (
             <WalletDashboard address={wallet.address} />
           ) : (
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 15, pb: 10 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 15, pb: 10, width: '100%', maxWidth: '1400px' }}>
               {/* Hero Section */}
               <Box
                 sx={{
@@ -247,22 +247,23 @@ function App() {
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  minHeight: '80vh',
+                  minHeight: '90vh',
                   textAlign: 'center',
                   position: 'relative',
+                  width: '100%',
                 }}
               >
                 {/* Decorative background elements */}
                 <Box sx={{
                   position: 'absolute',
-                  width: '600px',
-                  height: '600px',
+                  width: '800px',
+                  height: '800px',
                   background: 'radial-gradient(circle, rgba(139,92,246,0.15) 0%, rgba(0,0,0,0) 70%)',
                   top: '50%',
                   left: '50%',
                   transform: 'translate(-50%, -50%)',
                   zIndex: -1,
-                  filter: 'blur(60px)',
+                  filter: 'blur(80px)',
                 }} />
 
                 <Typography variant="h1" gutterBottom sx={{
@@ -272,14 +273,17 @@ function App() {
                   backgroundClip: 'text',
                   WebkitBackgroundClip: 'text',
                   color: 'transparent',
-                  fontSize: { xs: '3rem', md: '5rem' },
-                  letterSpacing: '-0.02em'
+                  fontSize: { xs: '3rem', md: '6rem' },
+                  letterSpacing: '-0.02em',
+                  lineHeight: 1.1
                 }}>
-                  Welcome to SEOchain
+                  Unleash the Limit<br />of Blockchain
                 </Typography>
 
-                <Typography variant="h4" color="text.secondary" sx={{ mb: 8, maxWidth: '800px', lineHeight: 1.5, fontWeight: 400 }}>
-                  The next generation <span style={{ color: '#8B5CF6', fontWeight: 700 }}>In-App Wallet</span> & Token Issuance Platform.
+                <Typography variant="h5" color="text.secondary" sx={{ mb: 8, maxWidth: '900px', lineHeight: 1.6, fontWeight: 400, fontSize: { xs: '1.1rem', md: '1.4rem' } }}>
+                  Vision Chain is a network-agnostic, enterprise-friendly Layer-1 for cross-chain dApps.
+                  With AI routing, zk security, and intent-centric execution, it connects EVM and non-EVM without any bridges.
+                  <br /><span style={{ color: '#8B5CF6', fontWeight: 700 }}>Build once. Run everywhere.</span>
                 </Typography>
 
                 <Button
@@ -305,25 +309,29 @@ function App() {
               </Box>
 
               {/* Features Section */}
-              <Box>
-                <Typography variant="h3" align="center" gutterBottom sx={{ fontWeight: 800, mb: 8 }}>
-                  Core Features
+              <Box sx={{ width: '100%' }}>
+                <Typography variant="h3" align="center" gutterBottom sx={{ fontWeight: 800, mb: 2 }}>
+                  Values that sets us apart
                 </Typography>
-                <Grid container spacing={4}>
+                <Typography variant="h6" align="center" color="text.secondary" sx={{ mb: 8, fontWeight: 400 }}>
+                  Network Agnostic + AI Agentic Sequencing + Intent-Centric Execution
+                </Typography>
+
+                <Grid container spacing={4} justifyContent="center">
                   {[
                     {
-                      title: '크로스체인 상호운용성',
-                      desc: '다양한 블록체인 네트워크 간의 자산과 데이터를 자유롭게 이동하세요.',
+                      title: 'Network Agnostic',
+                      desc: 'Connects EVM and non-EVM without any bridges. VCN powers Vision Chain’s network-agnostic Layer-1, aligning validators and developers.',
                       icon: <HubIcon sx={{ fontSize: 50, color: '#8B5CF6' }} />
                     },
                     {
-                      title: 'Intent Based Blockchain',
-                      desc: '복잡한 트랜잭션 과정을 단순화하여 사용자의 의도(Intent)를 중심으로 작동합니다.',
+                      title: 'AI Agentic Sequencing',
+                      desc: 'AI optimizes ordering and routing to cut MEV, failures, and fees. Experience intelligent transaction management.',
                       icon: <PsychologyIcon sx={{ fontSize: 50, color: '#10B981' }} />
                     },
                     {
-                      title: 'De-Fi, De-Pin, RWA 최적화',
-                      desc: '실물 자산(RWA)과 탈중앙화 금융(DeFi)에 최적화된 인프라를 제공합니다.',
+                      title: 'Intent-Centric Execution',
+                      desc: 'Vision Chain handles route, tokens, approvals, gas, and cross-chain settlement—compliance-aware by design.',
                       icon: <MonetizationOnIcon sx={{ fontSize: 50, color: '#F59E0B' }} />
                     }
                   ].map((feature, index) => (
@@ -331,9 +339,11 @@ function App() {
                       <Card sx={{
                         height: '100%',
                         textAlign: 'center',
-                        p: 4,
+                        p: 5,
                         transition: 'transform 0.3s',
-                        '&:hover': { transform: 'translateY(-10px)' }
+                        background: 'rgba(30, 41, 59, 0.4)',
+                        border: '1px solid rgba(255, 255, 255, 0.05)',
+                        '&:hover': { transform: 'translateY(-10px)', background: 'rgba(30, 41, 59, 0.6)' }
                       }}>
                         <Box sx={{ mb: 3, display: 'flex', justifyContent: 'center' }}>
                           {feature.icon}
@@ -351,44 +361,53 @@ function App() {
               </Box>
 
               {/* Team Section */}
-              <Box>
+              <Box sx={{ width: '100%' }}>
                 <Typography variant="h3" align="center" gutterBottom sx={{ fontWeight: 800, mb: 8 }}>
-                  Meet the Team
+                  Meet our Team
                 </Typography>
-                <Grid container spacing={4}>
+                <Grid container spacing={4} justifyContent="center">
                   {[
-                    { name: 'Alex Kim', role: 'Lead Developer', color: '#8B5CF6' },
-                    { name: 'Sarah Lee', role: 'Blockchain Architect', color: '#10B981' },
-                    { name: 'Mike Chen', role: 'UI/UX Designer', color: '#F59E0B' },
-                    { name: 'Jessica Park', role: 'Product Manager', color: '#EC4899' },
-                    { name: 'David Wilson', role: 'Security Engineer', color: '#3B82F6' },
-                    { name: 'Emily Zhang', role: 'Community Manager', color: '#6366F1' },
+                    { name: 'Viswanadh Akella', role: 'Chief Executive Officer', desc: '15+ years in IT & blockchain. Designs enterprise solutions.', color: '#8B5CF6' },
+                    { name: 'Gokul.A', role: 'Chief Technology Officer', desc: 'Blockchain & digital innovation expert. Builds Innovation Labs.', color: '#10B981' },
+                    { name: 'Jay.S', role: 'Chief Operating Officer', desc: 'Blockchain & fintech expert. Founded innovative blockchain companies.', color: '#F59E0B' },
+                    { name: 'Marc Robinson', role: 'Chief Marketing Officer', desc: '20+ years across digital assets and APAC markets (ex-Head of Coinbase APAC).', color: '#EC4899' },
+                    { name: 'JP Dumas', role: 'Strategic Advisor', desc: 'Advisor for NFT & Web3 connectivity. Business expansion in Europe.', color: '#3B82F6' },
+                    { name: 'Vivek Thapar', role: 'Strategic Advisor', desc: 'Strategic Advisor for Global Marketing.', color: '#6366F1' },
                   ].map((member, index) => (
                     <Grid item xs={12} sm={6} md={4} key={index}>
                       <Card sx={{
                         display: 'flex',
+                        flexDirection: 'column',
                         alignItems: 'center',
-                        p: 3,
+                        textAlign: 'center',
+                        p: 4,
+                        height: '100%',
                         transition: 'all 0.3s',
+                        background: 'rgba(30, 41, 59, 0.4)',
+                        border: '1px solid rgba(255, 255, 255, 0.05)',
                         '&:hover': {
                           background: 'rgba(255,255,255,0.05)',
                           transform: 'scale(1.02)'
                         }
                       }}>
                         <Avatar sx={{
-                          width: 70,
-                          height: 70,
-                          mr: 3,
+                          width: 100,
+                          height: 100,
+                          mb: 3,
                           bgcolor: member.color,
-                          fontSize: '1.5rem',
-                          fontWeight: 'bold'
+                          fontSize: '2.5rem',
+                          fontWeight: 'bold',
+                          boxShadow: '0 0 20px rgba(0,0,0,0.3)'
                         }}>
                           {member.name.split(' ').map(n => n[0]).join('')}
                         </Avatar>
                         <Box>
-                          <Typography variant="h6" fontWeight="bold">{member.name}</Typography>
-                          <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+                          <Typography variant="h6" fontWeight="bold" gutterBottom>{member.name}</Typography>
+                          <Typography variant="subtitle2" color="primary.light" gutterBottom sx={{ fontWeight: 600 }}>
                             {member.role}
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary" sx={{ mt: 1, lineHeight: 1.6 }}>
+                            {member.desc}
                           </Typography>
                         </Box>
                       </Card>
