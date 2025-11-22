@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { SiweMessage } from 'siwe';
 import { ethers } from 'ethers';
-import redisClient from '../utils/redis.client';
+import { redisClient } from '../utils/redis.client';
 import { NonceData } from '../types';
 
 export class AuthService {
@@ -23,7 +23,7 @@ export class AuthService {
     async generateNonce(): Promise<string> {
         const nonce = ethers.hexlify(ethers.randomBytes(16));
 
-        // Store nonce in Redis with expiration
+        // Store nonce in Redis with expiration (or in-memory if Redis unavailable)
         const nonceData: NonceData = {
             nonce,
             expiresAt: Date.now() + (this.nonceExpiresIn * 1000)
@@ -65,7 +65,7 @@ export class AuthService {
             }
 
             // Delete used nonce
-            await redisClient.delete(nonceKey);
+            await redisClient.del(nonceKey);
 
             return {
                 address: siweMessage.address,
